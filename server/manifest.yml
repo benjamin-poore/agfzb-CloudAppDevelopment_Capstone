@@ -1,11 +1,11 @@
-  applications:
-  - name: djangoapp
+applications:
+  - name: djangoapp-poore
     routes:
-      - route: $HOST.$DOMAIN
+      - route: poore.apic.mybluemix.net
     memory: 128M
     buildpack: python_buildpack
-  - name: djangoapp-nginx
+  - name: djangoapp-poore-nginx
     routes:
-      - route: $HOST.$DOMAIN/static
+      - route: poore.apic.mybluemix.net/static
     memory: 128M
     buildpack: staticfile_buildpack
