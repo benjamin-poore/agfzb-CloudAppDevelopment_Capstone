@@ -12,7 +12,7 @@ import json
 
 from django.urls import reverse
 
-from .restapis import get_dealer_by_id_from_cf, get_dealers_from_cf
+from .restapis import get_dealer_by_id_from_cf, get_dealers_from_cf, post_request
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -118,6 +118,29 @@ def get_dealer_details(request, dealer_id):
         # print(dealer_names)
         # Return a list of dealer short name
         return HttpResponse(dealer_reviews)
+
+
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
+def add_review(request, dealer_id):
+    url = "https://us-south.functions.appdomain.cloud/api/v1/web/poore_djangoserver-space/default/reviews"
+    if request.user.is_authenticated:
+        review = dict()
+        review["time"] = datetime.utcnow().isoformat()
+        review["dealership"] = dealer_id
+        review["name"] = request.POST["username"]
+        review["purchase"] = request.POST["purchase"]
+        review["review"] = request.POST["review"]
+        review["purchase_date"] = request.POST["purchase_date"]
+
+        json_payload = dict()
+        json_payload["review"] = review
+
+        response = post_request(url, json_payload, dealer_id=dealer_id)
+
+        print(response)
+
+        return HttpResponse(response)
+# self.car_make = car_make
+# self.car_model = car_model
+# self.car_year = car_year
+# self.sentiment = sentiment
