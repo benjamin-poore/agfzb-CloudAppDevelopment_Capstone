@@ -26,6 +26,7 @@ def get_request(url, **kwargs):
 
         response = requests.get(url, headers={'Content-Type': 'application/json'},
                                 params=kwargs)
+        print(response)
     except:
         print("Network exception occurred")
         status_code = response.status_code
@@ -69,12 +70,9 @@ def get_dealers_from_cf(url, **kwargs):
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-# def get_dealer_by_id_from_cf(url, dealerId):
-def get_dealer_by_id_from_cf(url, dealerId):
+def get_dealer_reviews_from_cf(response):
     results = []
-    # Call get_request with a URL parameter
-    response = get_request(f'{url}/?dealerId={dealerId}')
-    if response:
+    if "data" in response:
         reviews = response["data"]["docs"]
 
         for review in reviews:
@@ -83,10 +81,18 @@ def get_dealer_by_id_from_cf(url, dealerId):
             sentiment = analyze_review_sentiments(review_doc["review"])
             # Create a CarDealer object with values in `doc` object
             review_obj = DealerReview(dealership=review_doc["dealership"], name=review_doc["name"], purchase=review_doc["purchase"], review=review_doc["review"], purchase_date=review_doc["purchase_date"],
-                                      car_make=review_doc["car_make"], car_model=review_doc["car_model"], car_year=review_doc["car_model"], sentiment=sentiment, id=review_doc["id"])
+                                      car_make=review_doc["car_make"], car_model=review_doc["car_model"], car_year=review_doc["car_model"], sentiment=sentiment, id=review_doc["_id"])
             results.append(review_obj)
 
     return results
+
+
+# def get_dealer_by_id_from_cf(url, dealerId):
+def get_dealer_by_id_from_cf(url, dealerId):
+    results = []
+    # Call get_request with a URL parameter
+    response = get_request(f'{url}/?dealerId={dealerId}')
+    return response
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 
@@ -123,7 +129,3 @@ def analyze_review_sentiments(dealer_review):
 
     except:
         print("Network exception occured in get_request()")
-
-
-# - Call get_request() with specified arguments
-# - Get the returned sentiment label such as Positive or Negative
