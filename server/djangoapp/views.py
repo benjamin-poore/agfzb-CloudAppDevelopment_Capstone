@@ -151,11 +151,12 @@ def add_review(request, dealer_id):
             review["purchase_date"] = request.POST["purchasedate"]
             review["purchase"] = request.POST.get("purchasecheck")
 
-            car = CarModel.objects.get(id=request.POST['car'])
-            if car:
-                review['car_make'] = car.make.name
-                review['car_model'] = car.name
-                review['car_year'] = car.year.strftime("%Y")
+            if request.POST.get('car'):
+                car = CarModel.objects.get(id=request.POST['car'])
+                if car:
+                    review['car_make'] = car.make.name
+                    review['car_model'] = car.name
+                    review['car_year'] = car.year.strftime("%Y")
 
             json_payload = dict()
             json_payload["review"] = review
