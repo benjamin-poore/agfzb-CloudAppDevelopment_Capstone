@@ -72,7 +72,7 @@
         <div class="form-group mt-3">
             <label for="car"><b>Select your car (model-make-year)</b></label>
             
-            <select name="car" id="car" class="form-select mt-3" required>
+            <select name="car" id="car" class="form-select mt-3" >
                 {% for car in cars %}
                 <option selected value={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
                 {% endfor %}
