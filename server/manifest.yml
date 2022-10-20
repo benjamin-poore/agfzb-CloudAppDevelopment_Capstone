@@ -2,10 +2,10 @@ applications:
   - name: djangoapp-poore
     routes:
       - route: poore.apic.mybluemix.net
-    memory: 1250M
+    memory: 128M
     buildpack: python_buildpack
   - name: djangoapp-poore-nginx
     routes:
       - route: poore.apic.mybluemix.net/static
-    memory: 1250M
+    memory: 128M
     buildpack: staticfile_buildpack
