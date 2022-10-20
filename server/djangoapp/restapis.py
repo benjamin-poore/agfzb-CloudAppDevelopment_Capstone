@@ -105,8 +105,10 @@ def analyze_review_sentiments(dealer_review):
     params["return_analyzed_text"] = False
 
     try:
-        api_key = os.environ.get("WATSON_API_KEY")
-        url = os.environ.get("WATSON_URL")
+        # api_key = os.environ.get("WATSON_API_KEY")
+        api_key = "uBQ0exzBG3DuEkmUjv0NL_uOXq_SErxJJIDRcX-FCaVj"
+        # url = os.environ.get("WATSON_URL")
+        url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/b8bc8b35-eee6-421e-abd6-92d4d2452077"
         authenticator = IAMAuthenticator(
             api_key)
         natural_language_understanding = NaturalLanguageUnderstandingV1(
