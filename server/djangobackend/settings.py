@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ['localhost', 'poore-dealership.apic.mybluemix.net', 'localhost:8000',
+ALLOWED_HOSTS = ['localhost', 'poore.apic.mybluemix.net', 'localhost:8000',
                  'https://benjaminpoor-8000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
 CSRF_TRUSTED_ORIGINS = [
     'https://benjaminpoor-8000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
