@@ -1,4 +1,66 @@
-<h1>
-  Welcome to Best Cars dealership, home to the best cars in North America. We
-  sell domestic and imported cars at reasonable prices.
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block page_title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url "djangoapp:index" %}">Dealership Reviews</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav w-100">
+      
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url "djangoapp:index" %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "djangoapp:about" %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "djangoapp:contact" %}">Contact</a>
+      </li>
+      
+      
+      
+      {% if user.is_authenticated %}
+      <li class="ml-auto">
+        <a class="btn btn-primary" href="#">({{ user.username }})</a>
+        <a class="btn btn-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="ml-auto">
+        <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Username" name="username">
+            <input type="password" class="form-control" placeholder="Password" name="psw">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign
+              Up</a>
+            </div>
+          </form>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class ="container">
+  <h1>
+    Welcome to Best Cars dealership, home to the best cars in North America. We
+    sell domestic and imported cars at reasonable prices.
+  </h1>
+</div>
+</body>
+</html>
