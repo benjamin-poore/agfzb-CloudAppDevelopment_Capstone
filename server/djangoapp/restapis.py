@@ -83,7 +83,7 @@ def get_dealer_reviews_from_cf(response):
             review_obj = DealerReview(
                 dealership=review_doc.get("dealership"),
                 name=review_doc.get("name"),
-                purchase=review_doc.get("purchase", False),
+                purchase=review_doc.get("purchase"),
                 review=review_doc.get("review"),
                 purchase_date=review_doc.get("purchase_date"),
                 car_make=review_doc.get("car_make"),

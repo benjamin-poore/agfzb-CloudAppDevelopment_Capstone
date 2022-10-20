@@ -149,6 +149,7 @@ def add_review(request, dealer_id):
 
             review["review"] = request.POST["content"]
             review["purchase_date"] = request.POST["purchasedate"]
+            review["purchase"] = request.POST.get("purchasecheck")
 
             car = CarModel.objects.get(id=request.POST['car'])
             if car:
