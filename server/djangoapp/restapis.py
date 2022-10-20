@@ -127,7 +127,7 @@ def analyze_review_sentiments(dealer_review):
         natural_language_understanding.set_service_url(url)
 
         response = natural_language_understanding.analyze(
-            text="Great service!",
+            text=dealer_review,
             features=Features(
                 entities=EntitiesOptions(
                     emotion=False, sentiment=True, limit=1),

@@ -160,10 +160,9 @@ def add_review(request, dealer_id):
             json_payload["review"] = review
 
             response = post_request(url, json_payload, dealer_id=dealer_id)
+            return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
 
-            print(response)
 
-            return HttpResponse(response)
 # self.car_make = car_make
 # self.car_model = car_model
 # self.car_year = car_year
